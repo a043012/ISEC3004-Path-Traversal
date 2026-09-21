@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Report Viewer (Vulnerable)</title>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 40px auto; }
+        pre { background:#f4f4f4; padding:15px; border:1px solid #ccc; }
+        .path-evidence { background:#fff3cd; border:1px solid #ffc107; padding:10px; margin:15px 0; }
+        .error { color: #b00020; }
+    </style>
+</head>
+<body>
+
+<h1>Report Viewer</h1>
+
+<p>
+    <a href="/?file=report.txt">View Report</a>
+</p>
+
+<hr>
+
+<h2>File Content</h2>
+
+<div class="path-evidence">
+    <b>Resolved server-side path:</b> {{ requested_path }}
+</div>
+
+{% if content %}
+    <pre>{{ content }}</pre>
+{% endif %}
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+</body>
+</html>
