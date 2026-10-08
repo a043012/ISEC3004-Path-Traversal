@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Report Viewer (Secured)</title>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 40px auto; }
+        pre { background:#f4f4f4; padding:15px; border:1px solid #ccc; }
+        .path-evidence { background:#fff3cd; border:1px solid #ffc107; padding:10px; margin:15px 0; }
+        .error { color: #b00020; }
+        .blocked { background:#f8d7da; border:1px solid #dc3545; padding:10px; margin:15px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Report Viewer (Secured)</h1>
+
+<p>
+    <a href="/?file=report.txt">View Report</a>
+</p>
+
+<hr>
+
+<h2>File Content</h2>
+
+<div class="path-evidence">
+    <b>Resolved server-side path:</b> {{ requested_path }}
+</div>
+
+{% if blocked %}
+    <div class="blocked"><b>Access blocked:</b> canonicalized path is outside the allowed "reports" directory.</div>
+{% endif %}
+
+{% if content %}
+    <pre>{{ content }}</pre>
+{% endif %}
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+</body>
+</html>
